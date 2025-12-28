@@ -1,0 +1,75 @@
+.settings-container {
+    min-height: calc(100vh - 80px);
+    padding: 2rem;
+}
+
+.settings-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.settings-content h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.settings-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.settings-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.settings-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.settings-item {
+    margin-bottom: 1.5rem;
+}
+
+.settings-item:last-child {
+    margin-bottom: 0;
+}
+
+.settings-item label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.settings-item p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.text-mono {
+    font-family: monospace;
+    font-size: 0.875rem;
+    background: var(--bg-secondary);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.text-secondary {
+    font-style: italic;
+}
+
+.about-text {
+    margin: 0.5rem 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
