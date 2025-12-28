@@ -1,5 +1,4 @@
-# Sync-Sahyadri ⚡
-Syncing Skills, Building Teams, Empowering Sahyadri. 🤝
+# TeamMate - College Project Collaboration Platform 
 
 A Tinder-style matching app for college students to find teammates for mini-projects and collaborations.
 
