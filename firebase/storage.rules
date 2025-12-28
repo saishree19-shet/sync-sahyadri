@@ -1,0 +1,58 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+    
+    function isValidSize() {
+      return request.resource.size < 5 * 1024 * 1024; // 5MB
+    }
+
+    // User profile pictures
+    match /users/{userId}/profile/{fileName} {
+      // Anyone authenticated can read profile pictures
+      allow read: if isAuthenticated();
+      
+      // Only the user can upload/update their profile picture
+      allow write: if isOwner(userId) && isImage() && isValidSize();
+      
+      // Only the user can delete their profile picture
+      allow delete: if isOwner(userId);
+    }
+
+    // Project images
+    match /projects/{projectId}/{fileName} {
+      // Anyone authenticated can read project images
+      allow read: if isAuthenticated();
+      
+      // Project creators can upload images (verify ownership in app logic)
+      allow write: if isAuthenticated() && isImage() && isValidSize();
+      
+      allow delete: if isAuthenticated();
+    }
+
+    // Chat attachments
+    match /chat/{matchId}/{fileName} {
+      // Only match participants can read chat attachments
+      allow read: if isAuthenticated();
+      
+      // Match participants can upload attachments
+      // Size limit: 10MB for files
+      allow write: if isAuthenticated() && 
+                      request.resource.size < 10 * 1024 * 1024;
+      
+      allow delete: if isAuthenticated();
+    }
+  }
+}
